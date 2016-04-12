@@ -19,7 +19,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) { }
 };
 
-bool hasCycle(ListNode *head,ListNode*& cycleTag) {
+bool hasCycle(ListNode *head, ListNode *&cycleTag) {
     if (head == nullptr || head->next == nullptr) return false;
 
     ListNode *pre = head->next;
@@ -36,26 +36,26 @@ bool hasCycle(ListNode *head,ListNode*& cycleTag) {
     return false;
 }
 
-//bad sulution with modifying the linked node. 108ms
+//bad solution with modifying the linked node. 108ms
 ListNode *detectCycle(ListNode *head) {
-    ListNode* cycleTag;
-    ListNode* tmpcycleTag;
-    bool isCycle = hasCycle(head,cycleTag);
-    if(isCycle){
-        ListNode* cycleStart = head;
-        while (true){
-            ListNode* newhead = cycleStart->next;
-            cycleStart->next= nullptr;
-            if(hasCycle(cycleTag,tmpcycleTag)){
-                cycleStart->next=newhead;
+    ListNode *cycleTag;
+    ListNode *tmpcycleTag;
+    bool isCycle = hasCycle(head, cycleTag);
+    if (isCycle) {
+        ListNode *cycleStart = head;
+        while (true) {
+            ListNode *newhead = cycleStart->next;
+            cycleStart->next = nullptr;
+            if (hasCycle(cycleTag, tmpcycleTag)) {
+                cycleStart->next = newhead;
                 cycleStart = newhead;
-            } else{
-                cycleStart->next=newhead;
+            } else {
+                cycleStart->next = newhead;
                 return cycleStart;
             }
         }
 
-    } else{
+    } else {
         return nullptr;
     }
 }
@@ -88,12 +88,11 @@ int main() {
     sec->next = third;
     third->next = forth;
     forth->next = head;
-    ListNode* ans;
+    ListNode *ans;
     ans = detectCycle(head);
     cout << ans->val << endl;
     return 0;
 }
-
 
 
 #endif //LEECODEPROBLEMSSOLUTIONSBYC__IILINKEDLISTCYCLE142_H

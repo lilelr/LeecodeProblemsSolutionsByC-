@@ -1,9 +1,10 @@
 //
 // Created by YuXiao on 4/8/16.
 //
-
-#include <tkDecls.h>
 #include "SortList148.h"
+#include <vector>
+#include <iostream>
+using namespace std;
 
 // Definition for singly-linked list.
 struct ListNode {

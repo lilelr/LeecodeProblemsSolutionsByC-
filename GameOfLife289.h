@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <altivec.h>
+using namespace std;
 
 
 class Solution {

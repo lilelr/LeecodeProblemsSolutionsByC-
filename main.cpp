@@ -1,69 +1,47 @@
 /// Copyright 2016 yuXiao
+
+#include "BinaryTreePreorderTraversal144.h"
 #include <iostream>
 #include <vector>
 
-using std::vector;
-using std::cout;
-using std::endl;
-using std::cin;
+using namespace std;
 
-// Below is the interface for Iterator, which is already defined for you.
-// **DO NOT** modify the interface for Iterator.
-class Iterator {
-    struct Data;
-    Data *data;
- public:
-    explicit Iterator(const vector<int> &nums);
+//Definition for a binary tree node.
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
 
-    Iterator(const Iterator &iter);
-
-    virtual ~Iterator();
-
-    // Returns the next element in the iteration.
-    int next();
-
-    // Returns true if the iteration has more elements.
-    bool hasNext() const;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
 };
 
-
-class PeekingIterator : public Iterator {
- public:
-    explicit PeekingIterator(const vector<int> &nums) : Iterator(nums) {
-        // Initialize any member here.
-        // **DO NOT** save a copy of nums and manipulate it directly.
-        // You should only use the Iterator interface methods.
-        this->next();
+void preOrder(TreeNode *root,vector<int>& ans) {
+    if (root != nullptr) {
+        ans.push_back(root->val);
+        preOrder(root->left,ans);
+        preOrder(root->right,ans);
     }
+}
 
-    // Returns the next element in the iteration without advancing the iterator.
-    int peek() {
-        return nextval;
-    }
+vector<int> preorderTraversal(TreeNode *root) {
+    vector<int> ans;
+    if (root == nullptr) return ans;
+    preOrder(root,ans);
 
-    // hasNext() and next() should behave the same as in the Iterator interface.
-    // Override them if needed.
-    int next() {
-        int ans = nextval;
-        if (Iterator::hasNext()) {
-            flagNext = true;
-            nextval = Iterator::next();
-        } else {
-            flagNext = false;
-        }
-        return ans;
-    }
+//    for(int i=0;i<ans.size();i++){
+//        cout<<ans[i]<<endl;
+//    }
+    return ans;
+}
 
-    bool hasNext() const {
-        return flagNext;
-    }
-
- private:
-    bool flagNext;
-    int nextval;
-};
 
 int main() {
-    cout << "Hello, World!" << endl;
+    TreeNode* root = new TreeNode(1);
+//    root->left = new TreeNode(2);
+//    root->left->right = new TreeNode(3);
+//    root->right = new TreeNode(6);
+    root->right = new TreeNode(2);
+    root->right->left = new TreeNode(3);
+    preorderTraversal(root);
     return 0;
 }

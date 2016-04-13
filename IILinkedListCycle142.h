@@ -62,6 +62,7 @@ ListNode *detectCycle(ListNode *head) {
 
 //constant space and do not modify the linked node. 12ms
 // Visit the website below to see the clear and strict explanation.
+//https://leetcode.com/discuss/77721/implementation-much-clear-strict-explanation-give-more-clear
 ListNode *detectCycleSecond(ListNode *head) {
     ListNode *fast, *slow;
     fast = slow = head;

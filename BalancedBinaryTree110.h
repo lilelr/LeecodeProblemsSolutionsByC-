@@ -1,4 +1,10 @@
-/// Copyright 2016 yuXiao
+//
+// Created by YuXiao on 16/4/13.
+//
+
+#ifndef LEECODEPROBLEMSSOLUTIONSBYC__BALANCEDBINARYTREE110_H
+#define LEECODEPROBLEMSSOLUTIONSBYC__BALANCEDBINARYTREE110_H
+/// Given a binary tree, determine if it is a Balanced Binary Tree.
 
 #include <iostream>
 #include <vector>
@@ -52,3 +58,5 @@ int main() {
     isBalanced(root);
     return 0;
 }
+
+#endif //LEECODEPROBLEMSSOLUTIONSBYC__BALANCEDBINARYTREE110_H

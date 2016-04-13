@@ -41,6 +41,29 @@ int minDepth(TreeNode *root) {
 
 }
 
+void hasPathSumSec(TreeNode* root, int sum,bool& flag){
+    if(root== nullptr) return;
+    sum-=root->val;
+   if(root->left == nullptr && root->right == nullptr){
+       if(sum==0) flag=true;
+   } else{
+       hasPathSumSec(root->left,sum,flag);
+       hasPathSumSec(root->right,sum,flag);
+   }
+}
+
+bool hasPathSum(TreeNode* root, int sum) {
+    if (root == nullptr) {
+        return true;
+    } else if (root->left == nullptr && root->right == nullptr) {
+        return (root->val == sum);
+    } else {
+        bool flag = false;
+        hasPathSumSec(root,sum,flag);
+        return flag;
+    }
+}
+
 
 
 int main() {
@@ -51,10 +74,10 @@ int main() {
     TreeNode *forth = new TreeNode(4);
     TreeNode *fifth = new TreeNode(5);
     root->left = first;
-//    root->right = second;
+    root->right = second;
 //    first->left = third;
 //    first->right = forth;
 //    third->left = fifth;
-    cout << minDepth(root) << endl;
+    cout << hasPathSum(root,1) << endl;
     return 0;
 }

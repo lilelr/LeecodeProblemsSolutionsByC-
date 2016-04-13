@@ -1,5 +1,9 @@
-/// Copyright 2016 yuXiao
+//
+// Created by YuXiao on 16/4/13.
+//
 
+#ifndef LEECODEPROBLEMSSOLUTIONSBYC__MINIMUMDEPTHOFBINARYTREE111_H
+#define LEECODEPROBLEMSSOLUTIONSBYC__MINIMUMDEPTHOFBINARYTREE111_H
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -58,3 +62,4 @@ int main() {
     cout << minDepth(root) << endl;
     return 0;
 }
+#endif //LEECODEPROBLEMSSOLUTIONSBYC__MINIMUMDEPTHOFBINARYTREE111_H

@@ -1,5 +1,10 @@
-/// Copyright 2016 yuXiao
+//
+// Created by YuXiao on 16/4/13.
+// PreOrder
+//
 
+#ifndef LEECODEPROBLEMSSOLUTIONSBYC__PATHSUM113_H
+#define LEECODEPROBLEMSSOLUTIONSBYC__PATHSUM113_H
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -15,32 +20,6 @@ struct TreeNode {
 
     TreeNode(int x) : val(x), left(NULL), right(NULL) { }
 };
-
-int minDepthSec(TreeNode *root) {
-    if (root == nullptr) {
-        return 0;
-    } else if (root->left == nullptr && root->right == nullptr) {
-        return 1;
-    } else {
-        int leftDepth = minDepthSec(root->left);
-        int rightDepth = minDepthSec(root->right);
-        if (leftDepth == 0) {
-            return rightDepth + 1;
-        } else if (rightDepth == 0) {
-            return leftDepth + 1;
-        } else {
-            return min(leftDepth, rightDepth) + 1;
-        }
-    }
-}
-
-int minDepth(TreeNode *root) {
-    if (root == nullptr) return 0;
-    if (root->left == nullptr && root->right == nullptr) return 1;
-    return minDepthSec(root);
-
-}
-
 void hasPathSumSec(TreeNode *root, int sum, vector<int> answer, int pos, vector<vector<int>> &res) {
     if (root == nullptr) return;
     sum -= root->val;
@@ -97,3 +76,4 @@ int main() {
 //    third->left = fifth;
     return 0;
 }
+#endif //LEECODEPROBLEMSSOLUTIONSBYC__PATHSUM113_H

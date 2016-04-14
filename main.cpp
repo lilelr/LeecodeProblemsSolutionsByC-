@@ -16,71 +16,39 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) { }
 };
 
-int minDepthSec(TreeNode *root) {
-    if (root == nullptr) {
-        return 0;
-    } else if (root->left == nullptr && root->right == nullptr) {
-        return 1;
-    } else {
-        int leftDepth = minDepthSec(root->left);
-        int rightDepth = minDepthSec(root->right);
-        if (leftDepth == 0) {
-            return rightDepth + 1;
-        } else if (rightDepth == 0) {
-            return leftDepth + 1;
-        } else {
-            return min(leftDepth, rightDepth) + 1;
+void preOrder(TreeNode *root, TreeNode *&pre, bool isRoot) {
+    if (root != nullptr) {
+
+        if (!isRoot) {
+            pre->left = root;
+            pre = root;
         }
+
+        preOrder(root->left, pre, false);
+        preOrder(root->right, pre, false);
     }
 }
 
-int minDepth(TreeNode *root) {
-    if (root == nullptr) return 0;
-    if (root->left == nullptr && root->right == nullptr) return 1;
-    return minDepthSec(root);
-
-}
-
-void hasPathSumSec(TreeNode *root, int sum, vector<int> answer, int pos, vector<vector<int>> &res) {
-    if (root == nullptr) return;
-    sum -= root->val;
-    answer.reserve(pos+1);
-    pos++;
-    answer.push_back(root->val);
-
-    if (root->left == nullptr && root->right == nullptr) {
-        if (sum == 0) {
-            vector<int> tmpans;
-            for (int i = 0; i < pos; i++) {
-                tmpans.push_back(answer[i]);
-            }
-            res.push_back(tmpans);
+void flatten(TreeNode *root) {
+    if (root != nullptr) {
+        TreeNode *pre = root;
+        preOrder(root, pre, true);
+        TreeNode *secroot = root->left;
+        root->right = secroot;
+        root->left = nullptr;
+        while (secroot != nullptr) {
+            secroot->right = secroot->left;
+            secroot->left = nullptr;
+            secroot = secroot->right;
         }
-    } else {
-        hasPathSumSec(root->left, sum, answer, pos, res);
-        hasPathSumSec(root->right, sum, answer, pos, res);
-    }
-}
 
-vector<vector<int>> pathSum(TreeNode *root, int sum) {
-    vector<vector<int>> res;
-    if (root == nullptr) return res;
-    vector<int> answer;
-    int pos = 0;
-    hasPathSumSec(root, sum, answer, pos, res);
 
-    for (int i = 0; i < res.size(); i++) {
-        vector<int> item = res[i];
-//        for(vector<int>::iterator iterator =item.begin();iterator!=item.end();iterator++ ){
-//            cout<<*iterator<<endl;
+//        while (root != nullptr) {
+//            cout << root->val << endl;
+//            root = root->right;
 //        }
-        for (int i = 0; i < item.size(); i++) {
-            cout << item[i] << endl;
-        }
     }
-    return res;
 }
-
 
 int main() {
     TreeNode *root = new TreeNode(0);
@@ -93,7 +61,9 @@ int main() {
     root->right = second;
     first->left = third;
     first->right = forth;
-    pathSum(root, 4);
+    TreeNode *p = root;
+    flatten(root);
+//    pathSum(root, 4);
 //    third->left = fifth;
     return 0;
 }

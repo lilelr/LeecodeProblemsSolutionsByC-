@@ -1,4 +1,9 @@
-/// Copyright 2016 yuXiao
+//
+// Created by YuXiao on 16/4/18.
+//
+
+#ifndef LEECODEPROBLEMSSOLUTIONSBYC__HOUSEROBBER198_H
+#define LEECODEPROBLEMSSOLUTIONSBYC__HOUSEROBBER198_H
 // dynamic programming
 
 #include <iostream>
@@ -6,17 +11,6 @@
 #include <stack>
 
 using namespace std;
-
-
-//Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
-};
-
 int rob(vector<int>& nums) {
     int len = nums.size();
     if(len==0) return 0;
@@ -29,11 +23,4 @@ int rob(vector<int>& nums) {
     }
     return dp[len-1];
 }
-
-
-
-
-int main() {
-
-    return 0;
-}
+#endif //LEECODEPROBLEMSSOLUTIONSBYC__HOUSEROBBER198_H

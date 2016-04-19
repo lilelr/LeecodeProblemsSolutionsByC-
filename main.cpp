@@ -4,36 +4,43 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
 
-//Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+struct compare{
+ bool operator()(int& l, int& r){
+     return l>r;
+ }
 };
 
-int rob(vector<int>& nums) {
-    int len = nums.size();
-    if(len==0) return 0;
-    if(len==1) return nums[0];
-    int dp[len];
-    dp[0]=nums[0];
-    dp[1] = max(nums[0],nums[1]);
-    for(int i=2;i<len;i++){
-        dp[i] = max(dp[i-2]+nums[i],dp[i-1]);
+//first solution: using priority_queue as a min_heap
+//in C++, priority queues are a type of container adaptors, specifically designed such that its first element is always the greatest of the elements it contains, according to some strict weak ordering criterion
+//time complexity: O(n*logk)
+//space complexity: O(k)
+ //220 ms
+int findKthLargest(vector<int>& nums, int k){
+    priority_queue<int ,vector<int>, compare> Q;
+    for(auto num : nums){
+        Q.push(num);
+        cout<<Q.top()<<endl;
+        if(Q.size() > k){
+            Q.pop();
+        }
     }
-    return dp[len-1];
+    return Q.top();
 }
 
 
-
-
 int main() {
-
+    vector<int> arr;
+    arr.push_back(2);
+    arr.push_back(4);
+    arr.push_back(6);
+    arr.push_back(9);
+    arr.push_back(1);
+    int res = findKthLargest(arr,5);
+    cout<<res<<endl;
     return 0;
 }

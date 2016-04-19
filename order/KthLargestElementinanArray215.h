@@ -130,4 +130,47 @@ public:
         return part;
     }
 };
+
+//fourth solution quicksort using RandomizedPartition, which has the best running time -- 12ms.
+// https://leetcode.com/discuss/94520/sharing-my-12ms-divide-and-conquer-solution-in-c
+class Solution {
+public:
+    int RandomizedPartition(vector<int>& nums, int start, int end)
+    {
+        srand(time(NULL));
+        int choose = rand() % (end - start + 1) + start;
+        swap(nums[choose], nums[end]);
+        int pivot = nums[end];
+        int i = start - 1;
+        for(int j = start; j < end; j++)
+        {
+            if(nums[j] <= pivot)
+            {
+                i++;
+                swap(nums[i], nums[j]);
+            }
+        }
+        swap(nums[i+1], nums[end]);
+        return i+1;
+    }
+
+    //i-th smalleset number
+    int RandomizedSelect(vector<int>& nums, int start, int end, int i)
+    {
+        if(start == end)
+            return nums[start];
+        int mid = RandomizedPartition(nums, start, end);
+        int k = mid - start + 1;
+        if(i == k)
+            return nums[mid];
+        else if(i < k)
+            return RandomizedSelect(nums, start, mid-1, i);
+        else
+            return RandomizedSelect(nums, mid+1, end, i-k);
+    }
+
+    int findKthLargest(vector<int>& nums, int k) {
+        return RandomizedSelect(nums, 0, nums.size()-1, nums.size()-k+1);
+    }
+};
 #endif //LEECODEPROBLEMSSOLUTIONSBYC__KTHLARGESTELEMENTINANARRAY215_H

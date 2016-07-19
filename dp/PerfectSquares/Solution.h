@@ -29,6 +29,24 @@ public:
 
         return cntSqures.back();
     }
+
+    // 12ms static vector static is not used, it would cost 312ms.
+    int numSquares2(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+
+        static vector<int> cntSqures({0});
+        while (cntSqures.size() <= n) {
+            int curSize = cntSqures.size();
+            int newSqures = INT_MAX;
+            for (int j = 1; j * j <= curSize; j++) {
+                newSqures = min(newSqures, cntSqures[curSize - j * j] + 1);
+            }
+            cntSqures.push_back(newSqures);
+        }
+        return cntSqures[n];
+    }
 };
 
 

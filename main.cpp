@@ -8,39 +8,32 @@
 
 using namespace std;
 
+ // 440ms
+int numSquares(int n) {
+    if (n <= 0) {
+        return 0;
+    }
 
-struct compare{
- bool operator()(int& l, int& r){
-     return l>r;
- }
-};
-
-//first solution: using priority_queue as a min_heap
-//in C++, priority queues are a type of container adaptors, specifically designed such that its first element is always the greatest of the elements it contains, according to some strict weak ordering criterion
-//time complexity: O(n*logk)
-//space complexity: O(k)
- //220 ms
-int findKthLargest(vector<int>& nums, int k){
-    priority_queue<int ,vector<int>, compare> Q;
-    for(auto num : nums){
-        Q.push(num);
-        cout<<Q.top()<<endl;
-        if(Q.size() > k){
-            Q.pop();
+    vector<int> cntSqures(n + 1, INT_MAX);
+    cntSqures[0] = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j * j <= i; j++) {
+            cntSqures[i] = min(cntSqures[i], cntSqures[i - j * j] + 1);
         }
     }
-    return Q.top();
+
+    return cntSqures.back();
 }
 
-
 int main() {
-    vector<int> arr;
-    arr.push_back(2);
-    arr.push_back(4);
-    arr.push_back(6);
-    arr.push_back(9);
-    arr.push_back(1);
-    int res = findKthLargest(arr,5);
-    cout<<res<<endl;
+//    vector<int> arr;
+//    arr.push_back(2);
+//    arr.push_back(4);
+//    arr.push_back(6);
+//    arr.push_back(9);
+//    arr.push_back(1);
+//    int res = findKthLargest(arr,5);
+    cout << numSquares(12) << endl;
+    cout << "e" << endl;
     return 0;
 }

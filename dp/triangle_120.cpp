@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <cstdio>
 // https://leetcode.com/problems/triangle/description/
 using namespace std;
 
@@ -54,6 +55,17 @@ public:
     }
 };
 
+int x=4;
+void incre()
+{
+    static int x=1;
+    x*=x+1;
+    printf("%d",x);
+}
 int main() {
+    int I;
+    for(int i=1;i<x;i++){
+        incre();
+    }
     cout << "ee" << endl;
 }

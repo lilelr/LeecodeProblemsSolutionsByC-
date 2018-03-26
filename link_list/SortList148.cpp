@@ -29,8 +29,8 @@ ListNode *sortList(ListNode *head) {
             mt->next = head;
             mt = mt->next;
         } else if (val > head->val){
-        // Comparison determines the sort as descending order or ascending order.
-         //   Greater than generates the ascending order.
+        // Comparison determines the sort as descending sort or ascending sort.
+         //   Greater than generates the ascending sort.
             lt->next = head;
             lt = lt->next;
         }else{

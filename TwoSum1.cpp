@@ -1,6 +1,6 @@
 //
 // Created by YuXiao on 4/9/16.
-//
+//https://leetcode.com/problems/two-sum/description/
 
 #include "TwoSum1.h"
 #include <vector>
@@ -13,9 +13,10 @@ vector<int> twoSum(vector<int>& nums,int target){
     unordered_map<int,int> m;
     for(int i=0;i<nums.size();i++){
         if(m.find(target - nums[i]) != m.end()){
-            return {m[target-nums[i],i]};
+            return {m[target-nums[i]],i};
         }
         m[target-nums[i]] = i;
     }
+
 }
 

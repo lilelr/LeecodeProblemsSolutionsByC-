@@ -28,4 +28,8 @@ Jump Game 45
    if (reachable != preReachable) {
                   count++;
               }
-
+   cur 当前位置，和上一次位置 pre的经典交替更新
+     pre = cur
+     cur = max(cur,j+nums[j])
+     i = pre
+     因为cur 每次循环都更新向前，所以pre=cur 也会每次更新向前，所以 i=pre 也会每次更新向前

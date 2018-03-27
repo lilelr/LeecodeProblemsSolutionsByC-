@@ -13,3 +13,12 @@ Reverse Words In a String 151
 
 205. Isomorphic Strings
    使用两个字母数组来模拟hashMap,提高查找效率
+
+   6 zigzag-conversion
+   精妙的往返指针迭代，step =1,step =-1
+      if (row == 0)
+                   step = 1;
+               else if (row == nRows - 1)
+                   step = -1;
+
+               row += step;

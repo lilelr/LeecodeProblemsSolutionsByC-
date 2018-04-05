@@ -1,0 +1,97 @@
+1 寻找动态规划动态变化上的前进方向来源
+如 MinimumPathSum64
+ * Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+ // Making progress depends only two move. Moving down or moving right.
+   resGrid[i][j] = Math.min(resGrid[i - 1][j], resGrid[i][j - 1]) + grid[i][j];
+ 然后引入最大最小值,求解
+
+2 for 循环中动态规划
+  引入递归,如题 Scramble String 87
+    for (int i = 1; i < len; i++) {
+              if (isScramble(s1.substring(0, i), s2.substring(len - i))
+                      && isScramble(s1.substring(i), s2.substring(0, len - i))) {
+                  return true;
+              }
+              if (isScramble(s1.substring(0, i), s2.substring(0, i))
+                      && isScramble(s1.substring(i), s2.substring(i))) {
+                  return true;
+              }
+    }
+
+  遍历每一项时,有时把当前遍历项作为动态规划的最后变化的那一步,会产生新的思路.
+  当前项的左右两边递归时,注意控制好递归的出口条件,条件如长度一致/元素相同/题意设置的条件相同/或者元素为空
+   这种for循环中的动态规划,算法复杂度有可能是指数级别的.
+
+3 逆向思考动态规划方程
+如题 Triangle 120
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+        for (int i = triangle.size() - 2; i >= 0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                nums[j] = triangle.get(i).get(j) + Math.min(nums[j], nums[j + 1]);
+            }
+        }
+        return nums[0];
+
+4 把握动态变化的可能方向,结合DFS和BFS结题
+如题 Triangle 120
+
+     // Top-Down
+         public int minimumTotalTop_Down(List<List<Integer>> triangle) {
+             if (triangle.size() == 0) return 0;
+             long[][] cache = new long[triangle.size()][triangle.size()];
+             for (int i = 0; i < cache.length; i++)
+                 for (int j = 0; j < cache.length; j++)
+                     cache[i][j] = Long.MIN_VALUE;
+             return dfs(triangle, 0, 0, 0, cache);
+         }
+
+     private int dfs(List<List<Integer>> triangle, int iCur, int jCur, int total, long[][] cache) {
+        int min = Integer.MAX_VALUE;
+        if (cache[iCur][jCur] != Long.MIN_VALUE) {
+            min = (int) cache[iCur][jCur];
+        } else if (iCur == triangle.size() - 1) {
+            min = triangle.get(iCur).get(jCur);
+        } else {
+            min = dfs(triangle, iCur + 1, jCur, triangle.get(iCur).get(jCur), cache);
+            min = Math.min(min, dfs(triangle, iCur + 1, jCur + 1, triangle.get(iCur).get(jCur), cache));
+        }
+        cache[iCur][jCur] = min;
+        return min + total;
+    }
+
+5 需要研究多种变化的可能时,尝试指针基本不动的for循环.
+  如UglyNumber 264
+   /// Dynamic Programming  O(n)
+      public int nthUglyNumber(int n) {
+          if (n == 1) return 1;
+          List<Integer> ans = new ArrayList<>();
+          ans.add(1);
+          int i2 = 0, i3 = 0, i5 = 0;
+          int count = 1;
+          while (count <= n) {
+              boolean flag = true;
+              int nextItem = Math.min(ans.get(i2) * 2, Math.min(ans.get(i3) * 3, ans.get(i5) * 5));
+              if (nextItem == ans.get(i2) * 2) {
+                  i2++;
+              }
+              if (nextItem == ans.get(i3) * 3) {
+                  i3++;
+
+              }
+              if (nextItem == ans.get(i5) * 5) {
+                  i5++;
+
+              }
+
+              count++;
+              ans.add(nextItem);
+
+
+          }
+          return ans.get(n - 1);
+      }

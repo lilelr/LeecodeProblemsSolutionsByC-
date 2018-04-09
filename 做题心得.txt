@@ -1,3 +1,35 @@
 1 直接用数组从0开始的下标思考问题
 2 自己想的比看过往代码写得还快
 3 考虑边界的问题
+
+4 while 结合 cnt,cnt 从0 开始
+  int cnt = 0;
+        while (n) {
+            n = (n & (n - 1));
+            cnt++;
+        }
+
+5  int pre = ex>>1; 1个数除以2 乘以2， <<2
+
+6 是不是 偶数
+ if(ex & 0x1 ==奇数){
+            res *= base;
+        }
+
+7 递归函数写法 写出递归式 fun(3,7) = fun1(3,3)*fun1(3*3) * 3;
+double unsigned_int_power(double base, int ex){
+          if(ex==0){
+              return 1;
+          }
+          if(ex ==1){
+              return base;
+          }
+
+          int pre = ex>>1;
+          double res = unsigned_int_power(base,pre); // 栈前面出栈元素的递归结果，即使fun1
+          res = res*res; // 根据递归式得到现在的结果
+          if(ex & 0x1 ==1){
+              res *= base;
+          }
+          return res;
+      }

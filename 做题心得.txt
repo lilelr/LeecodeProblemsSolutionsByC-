@@ -81,3 +81,7 @@ bool Find(int target, vector<vector<int> > array) {
    a数组 1,2,3,4
      4-1 = 3 ,3为{2，3，4} 的个数
      1+2 = 3 ，2 为{2，3} 的个数
+
+11
+  一个指向指针的指针，用来保存中间的指针值
+ void ConvertNode(TreeNode* p_node, TreeNode** p_last_node_in_list){

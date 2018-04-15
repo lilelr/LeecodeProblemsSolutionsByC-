@@ -4,18 +4,20 @@
 
 #ifndef LEECODEPROBLEMSSOLUTIONSBYC__BINARYTREEPOSTORDERTRAVERSAL145_H
 #define LEECODEPROBLEMSSOLUTIONSBYC__BINARYTREEPOSTORDERTRAVERSAL145_H
+
 #include <iostream>
 #include <vector>
 #include <stack>
 
 using namespace std;
+
 //Definition for a binary tree node.
 struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
 
-    TreeNode(int x) : val(x), left(NULL), right(NULL) { }
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
 void preOrder(TreeNode *root, vector<int> &ans) {
@@ -41,7 +43,7 @@ vector<int> preorderTraversal(TreeNode *root) {
 vector<int> postorderTraversal(TreeNode *root) {
     vector<int> ans;
     if (root == NULL) return ans;
-    stack<TreeNode*> stack;
+    stack<TreeNode *> stack;
     TreeNode *p = root;
     TreeNode *r = NULL;
     while (p || !stack.empty()) {
@@ -58,32 +60,33 @@ vector<int> postorderTraversal(TreeNode *root) {
                 stack.pop();
                 ans.push_back(p->val);
                 r = p;
-                p= nullptr;
+                p = nullptr;
             }
         }
     }
     return ans;
 
 }
-vector<int> postorderTraversal2(TreeNode *root) {
+
+vector<int> postorder_traversal(TreeNode *root) {
     vector<int> ans;
-    if (root== nullptr) return ans;
-    TreeNode* p = root;
-    TreeNode* r = nullptr;
-    stack<TreeNode*> stack1;
-    while (p || !stack1.empty()){
-        if(p){
+    if (root == nullptr) return ans;
+    TreeNode *p = root;
+    TreeNode *r = nullptr;
+    stack<TreeNode *> stack1;
+    while (p || !stack1.empty()) {
+        if (p) {
             stack1.push(p);
             p = p->left;
-        }else{
+        } else {
             p = stack1.top();
-            if(p->right && r!=p->right ){
+            if (p->right && p->right != r) {
                 p = p->right;
                 stack1.push(p);
                 p = p->left;
-            }else{
-                stack1.pop();
+            } else {
                 ans.push_back(p->val);
+                stack1.pop();
                 r = p;
                 p = nullptr;
             }
@@ -91,6 +94,10 @@ vector<int> postorderTraversal2(TreeNode *root) {
     }
     return ans;
 }
+
+
+
+
 int main() {
     TreeNode *root = new TreeNode(1);
 //    root->left = new TreeNode(2);
@@ -99,10 +106,11 @@ int main() {
     root->right = new TreeNode(2);
     root->right->left = new TreeNode(3);
 //    preorderTraversal(root);
-    vector<int> ans = postorderTraversal2(root);
+    vector<int> ans = postorder_traversal(root);
     for (int i = 0; i < ans.size(); i++) {
         cout << ans[i] << endl;
     }
     return 0;
 }
+
 #endif //LEECODEPROBLEMSSOLUTIONSBYC__BINARYTREEPOSTORDERTRAVERSAL145_H

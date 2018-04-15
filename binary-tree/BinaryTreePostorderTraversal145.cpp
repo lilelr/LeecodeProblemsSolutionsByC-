@@ -49,7 +49,7 @@ vector<int> postorderTraversal(TreeNode *root) {
             stack.push(p);
             p = p->left;
         } else {
-            TreeNode *p = stack.top();
+            p = stack.top();
             if (p->right && p->right != r) {
                 p = p->right;
                 stack.push(p);
@@ -58,14 +58,39 @@ vector<int> postorderTraversal(TreeNode *root) {
                 stack.pop();
                 ans.push_back(p->val);
                 r = p;
-                p = NULL;
+                p= nullptr;
             }
         }
     }
     return ans;
 
 }
-
+vector<int> postorderTraversal2(TreeNode *root) {
+    vector<int> ans;
+    if (root== nullptr) return ans;
+    TreeNode* p = root;
+    TreeNode* r = nullptr;
+    stack<TreeNode*> stack1;
+    while (p || !stack1.empty()){
+        if(p){
+            stack1.push(p);
+            p = p->left;
+        }else{
+            p = stack1.top();
+            if(p->right && r!=p->right ){
+                p = p->right;
+                stack1.push(p);
+                p = p->left;
+            }else{
+                stack1.pop();
+                ans.push_back(p->val);
+                r = p;
+                p = nullptr;
+            }
+        }
+    }
+    return ans;
+}
 int main() {
     TreeNode *root = new TreeNode(1);
 //    root->left = new TreeNode(2);
@@ -74,7 +99,7 @@ int main() {
     root->right = new TreeNode(2);
     root->right->left = new TreeNode(3);
 //    preorderTraversal(root);
-    vector<int> ans = postorderTraversal(root);
+    vector<int> ans = postorderTraversal2(root);
     for (int i = 0; i < ans.size(); i++) {
         cout << ans[i] << endl;
     }

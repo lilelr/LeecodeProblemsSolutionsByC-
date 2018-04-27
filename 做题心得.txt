@@ -85,3 +85,5 @@ bool Find(int target, vector<vector<int> > array) {
 11
   一个指向指针的指针，用来保存中间的指针值
  void ConvertNode(TreeNode* p_node, TreeNode** p_last_node_in_list){
+
+12 map，set 变量 tmap, tset

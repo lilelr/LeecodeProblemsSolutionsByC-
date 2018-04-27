@@ -17,6 +17,25 @@ using namespace std;
 
 class Solution {
 public:
+    static bool comp(int a, int b){
+        string A="";
+        string B="";
+        A+=to_string(a);
+        A+=to_string(b);
+        B+=to_string(b);
+        B+=to_string(a);
+        return A<B;
+    }
+
+    string PrintMinNumber(vector<int> numbers) {
+        string res="";
+        sort(numbers.begin(),numbers.end(),comp);
+        for(int i=0;i<numbers.size();i++){
+            res+=to_string(numbers[i]);
+        }
+        return res;
+    }
+
     vector<string> Permutation(string str) {
         vector<string> res;
         if (str.length() == 0) {

@@ -87,3 +87,24 @@ bool Find(int target, vector<vector<int> > array) {
  void ConvertNode(TreeNode* p_node, TreeNode** p_last_node_in_list){
 
 12 map，set 变量 tmap, tset
+
+13          vector<int> ans(k);
+         // 记得copy函数先定义目标容器的数量大小
+copy(tset.begin(),tset.end(),ans.begin());
+
+14  mulitset 标准用法
+   typedef multiset<int, greater<int>> int_set;
+   typedef multiset<int, greater<int>>::iterator set_iterator;
+ int_set tset;
+        vector<int>::const_iterator iter = input.begin();
+        for(;iter!= input.end();iter++){
+            if(tset.size()<k){
+                tset.insert(*iter);
+            }else{
+                set_iterator iter_greatest = tset.begin();
+                if(*iter < *(tset.begin())){
+                    tset.erase(iter_greatest);
+                    tset.insert(*iter);
+                }
+            }
+        }

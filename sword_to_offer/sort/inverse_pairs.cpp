@@ -16,6 +16,7 @@ const int MOD = 1000000007;
 
 class Solution {
 public:
+    // 归并排序
     int inverse_pairs_core(vector<int>& data, vector<int>& cache, int start, int end) {
         int ans = 0;
 

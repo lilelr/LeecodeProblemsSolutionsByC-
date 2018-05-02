@@ -108,3 +108,11 @@ copy(tset.begin(),tset.end(),ans.begin());
                 }
             }
         }
+
+15 char判断是否是数字
+ while (!isdigit(str[i]))
+                ++i;
+
+16 读入一行
+  string str;
+    while (getline(cin, str)) {

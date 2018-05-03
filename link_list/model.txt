@@ -1,0 +1,20 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+using namespace std;
+
+class Solution {
+public:
+
+    struct ListNode {
+        int val;
+        ListNode *next;
+
+        ListNode(int x) : val(x), next(NULL) { }
+    };
+
+    ListNode* insertionSortList(ListNode* head) {
+
+    }
+};

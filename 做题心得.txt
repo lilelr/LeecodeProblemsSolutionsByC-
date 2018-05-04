@@ -116,3 +116,9 @@ copy(tset.begin(),tset.end(),ans.begin());
 16 读入一行
   string str;
     while (getline(cin, str)) {
+
+17 判断一个int 数是否溢出
+                    if (((minus > 0) && (num > 0x7FFFFFFF)) || ((minus < 0) && (num > 0x80000000))) {
+
+18 num = num*10 + str[i]-'0'
+ 等价于                    num = (num << 1) + (num << 3) + ((*cstr) & 0xf);

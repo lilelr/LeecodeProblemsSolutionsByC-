@@ -122,3 +122,8 @@ copy(tset.begin(),tset.end(),ans.begin());
 
 18 num = num*10 + str[i]-'0'
  等价于                    num = (num << 1) + (num << 3) + ((*cstr) & 0xf);
+
+
+19 vecotor 排序
+        sort(numbers.begin(),numbers.end());
+           sort(numbers.begin(),numbers.end()，compare);  less, great

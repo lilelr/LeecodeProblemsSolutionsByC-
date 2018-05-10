@@ -2,6 +2,7 @@
 // Created by YuXiao on 5/10/18.
 //
 #include <cstdio>
+#include <cstring>
 
 int panel[50], tot = 0, n = 8, nc = 0;
 
@@ -45,6 +46,7 @@ void search2(int cur) {
         }
 }
 
+
 int main() {
     search(0);
 
@@ -55,6 +57,7 @@ int main() {
     search2(0);
     printf("%d\n", tot);
     printf("%d\n", nc);
+
 
     return 0;
 }

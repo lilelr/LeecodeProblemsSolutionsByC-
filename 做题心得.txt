@@ -127,3 +127,24 @@ copy(tset.begin(),tset.end(),ans.begin());
 19 vecotor 排序
         sort(numbers.begin(),numbers.end());
            sort(numbers.begin(),numbers.end()，compare);  less, great
+
+20 map 插入
+ map<char, int> last_pos_map;
+        for (int i = 0; i < len; i++) {
+            if(last_pos_map.find(s[i])==last_pos_map.end()){
+                last_pos_map.insert({s[i], i});
+            }else{
+                last_pos_map[s[i]] = i;
+            }
+        }
+
+   map 查找
+    int find_min_last_pos(map<char, int> &last_pos_map) {
+           if (last_pos_map.empty()) return -1;
+           int min_last_pos = INT_MAX;
+           auto it = last_pos_map.begin();
+           for (; it != last_pos_map.end(); it++) {
+               min_last_pos = min(min_last_pos, it->second);
+           }
+           return min_last_pos;
+       }

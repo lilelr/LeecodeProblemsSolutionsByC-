@@ -163,3 +163,10 @@ copy(tset.begin(),tset.end(),ans.begin());
                    t += single(i + a, j + b);
            return t;
    }
+
+
+22 lower_bound upper_bound 二分查找实现 log(N)
+auto cmp = [](Interval a, Interval b) { return a.end + 1 < b.start; };
+        auto it0 = lower_bound(intervals.begin(), intervals.end(), newInterval, cmp); >= newInterval 的第一个元素的下标
+        auto it1 = upper_bound(intervals.begin(), intervals.end(), newInterval, cmp);
+        > newInterval 的第一个元素的下标

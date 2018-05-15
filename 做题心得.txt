@@ -170,3 +170,22 @@ auto cmp = [](Interval a, Interval b) { return a.end + 1 < b.start; };
         auto it0 = lower_bound(intervals.begin(), intervals.end(), newInterval, cmp); >= newInterval 的第一个元素的下标
         auto it1 = upper_bound(intervals.begin(), intervals.end(), newInterval, cmp);
         > newInterval 的第一个元素的下标
+
+
+23 frog_jump 403
+hashmap 与 set 初始化
+ unordered_map<int, set<int>> m;
+        for (auto x: stones) m[x] = {};
+
+   m[0].insert(0);
+          for (int i = 0; i < n; i++) {
+              for (int last_step: m[stones[i]]) {
+                  for (int next_step = last_step - 1; next_step <= last_step + 1; next_step++) {
+                      if (next_step > 0 && m.count(stones[i] + next_step)) {
+                          m[stones[i] + next_step].insert(next_step);
+                      }
+                  }
+              }
+          }
+          bool res = !m[stones[n - 1]].empty();
+          return res;

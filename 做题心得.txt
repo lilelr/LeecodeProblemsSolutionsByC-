@@ -189,3 +189,29 @@ hashmap 与 set 初始化
           }
           bool res = !m[stones[n - 1]].empty();
           return res;
+
+
+ 24
+    #include <sstream>
+        stringstream& s;
+                string str;
+         getline(s, str, ',');
+
+      TreeNode* deserialize(string data) {
+             if (data == "#") return NULL;
+             stringstream s(data);
+             return makeDeserialize(s);
+         }
+
+         TreeNode* makeDeserialize(stringstream& s) {
+             string str;
+             getline(s, str, ',');
+             if (str == "#") {
+                 return NULL;
+             } else {
+                 TreeNode* root = new TreeNode(stoi(str));
+                 root->left = makeDeserialize(s);
+                 root->right = makeDeserialize(s);
+                 return root;
+             }
+         }

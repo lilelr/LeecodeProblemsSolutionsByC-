@@ -53,6 +53,10 @@ public:
 };
 
 
-//int main() {
-//
-//}
+int main() {
+    Solution s;
+//    string str = "ABC";
+    string str = "ABA";
+    int res = s.uniqueLetterString(str);
+    cout<<res<<endl;
+}

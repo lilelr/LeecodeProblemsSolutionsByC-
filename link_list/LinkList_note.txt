@@ -31,9 +31,31 @@ Reorder List 143
 
 Reverse Linked List 206
 反转单链表
+单链表遍历 ，
+1 .先考虑链表只有一个节点的特殊情况。
+否则 用两个节点 pre,p
+n=1;
+while(p!=nullprt){
+   n++;
+}
+2. pre节点遍历到m节点前
+可用 一个dump head 头结点
+int i=1;
+pre = newHead;
+while(pre!=nullptr && i<m){
+  i++;
+  pre=pre->next;
+}
 
+3. head 节点，非dump, 直接遍历
+
+    while (head!=NULL){
+
+    }
+
+    
 Reverse Linked List II 92
-反转单链表的第m到第n之间的节点. 三指针.
+反转单链表的第m到第n之间的节点. 三指针. 注意 while 遍历时选择的遍历节点为节点的next 值会变化的节点
 
 148. Sort List
 Sort a linked list in O(n log n) time using constant space complexity.

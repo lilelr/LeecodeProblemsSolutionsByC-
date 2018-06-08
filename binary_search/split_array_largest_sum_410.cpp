@@ -19,6 +19,7 @@ public:
         long sum = 0;
         for (int num:nums) {
             ma = max(ma, num);
+
             sum += num;
         }
 
@@ -57,8 +58,11 @@ public:
 };
 
 int main(){
-    vector<int> nums = {7,2,5,10,8};
+//    vector<int> nums = {7,2,5,10,8};
+//    vector<int> nums = {13,1,13,1};
+    vector<int> nums = {13,13,1,1};
     Solution s;
     int res = s.splitArray(nums,2);
+    cout<<res<<endl;
 }
 

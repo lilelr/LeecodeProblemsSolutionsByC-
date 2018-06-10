@@ -229,3 +229,10 @@ hashmap 与 set 初始化
       特许情况用 "若"
       箭头指明关系
       中括号，括号
+
+
+27 make pair
+   vector 逆序排序 rbegin(), rend()
+      vector<pair<int, int>> sorted;
+           for (int i = 0 ; i < indexes.size(); i++) sorted.push_back(make_pair(indexes[i], i));
+           sort(sorted.rbegin(), sorted.rend());

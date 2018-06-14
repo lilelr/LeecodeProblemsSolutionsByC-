@@ -316,3 +316,7 @@ hashmap 与 set 初始化
 
      return 0;
    }
+
+29 二分查找
+C++中lower_bound函数和upper_bound函数
+https://blog.csdn.net/u013475704/article/details/46458723

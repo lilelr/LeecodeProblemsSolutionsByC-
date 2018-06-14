@@ -236,3 +236,83 @@ hashmap 与 set 初始化
       vector<pair<int, int>> sorted;
            for (int i = 0 ; i < indexes.size(); i++) sorted.push_back(make_pair(indexes[i], i));
            sort(sorted.rbegin(), sorted.rend());
+
+
+28 堆排序
+   347. Top K Frequent Elements
+
+    // priority_queue
+    vector<int> topKFrequent(vector<int> &nums, int k) {
+        unordered_map<int, int> mymap;
+        for (int num:nums) {
+            mymap[num]++;
+        }
+
+        vector<int> res;
+        // pair<first, second>: first is frequency, second is number
+        priority_queue<pair<int, int>> pq;
+        for (auto it = mymap.begin(); it != mymap.end(); it++) {
+            pq.push(make_pair(it->second, it->first));
+            if (pq.size() > (int) mymap.size() - k) {
+                res.push_back(pq.top().second);
+                pq.pop();
+            }
+        }
+        return res;
+    }
+
+    // make_heap
+    vector<int> topKFrequent2(vector<int> &nums, int k) {
+        unordered_map<int, int> fq;
+        auto cmp = [&](int a, int b) {
+            return fq[a] > fq[b];
+        };
+        //priority_queue<int,vector<int>,function<bool(int,int)> >pq(cmp);
+        for (auto ele:nums)
+            fq[ele] += 1;
+
+        vector<int> res;
+        auto it = fq.begin();
+        for (int i = 0; i < k; i++)
+            res.push_back(it++->first);
+        make_heap(res.begin(), res.end(), cmp);
+        while (it != fq.end()) {
+            if (fq[it->first] > fq[res.front()]) {
+                pop_heap(res.begin(), res.end(), cmp);
+                res.back() = it->first;
+                push_heap(res.begin(), res.end(), cmp);
+            }
+            it++;
+        }
+
+        return res;
+    }
+
+   // range heap example
+   #include <iostream>     // std::cout
+   #include <algorithm>    // std::make_heap, std::pop_heap, std::push_heap, std::sort_heap
+   #include <vector>       // std::vector
+
+   int main () {
+     int myints[] = {10,20,30,5,15};
+     std::vector<int> v(myints,myints+5);
+
+     std::make_heap (v.begin(),v.end());
+     std::cout << "initial max heap   : " << v.front() << '\n';
+
+     std::pop_heap (v.begin(),v.end()); v.pop_back();
+     std::cout << "max heap after pop : " << v.front() << '\n';
+
+     v.push_back(99); std::push_heap (v.begin(),v.end());
+     std::cout << "max heap after push: " << v.front() << '\n';
+
+     std::sort_heap (v.begin(),v.end());
+
+     std::cout << "final sorted range :";
+     for (unsigned i=0; i<v.size(); i++)
+       std::cout << ' ' << v[i];
+
+     std::cout << '\n';
+
+     return 0;
+   }

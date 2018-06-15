@@ -320,3 +320,18 @@ hashmap 与 set 初始化
 29 二分查找
 C++中lower_bound函数和upper_bound函数
 https://blog.csdn.net/u013475704/article/details/46458723
+
+30
+set ,map find 函数 找到 !=end() ; 没找到 == end()
+g_set.find(head->val) != g_set.end()
+
+31 if(!group_start) group_start 为false
+
+
+32 标准库函数返回开始和结束指针的begin() 和end() 结合花括号初始化 set
+  vector<int> av={1,2,3,4};
+    unordered_set<int> uorder_set{begin(av),end(av)};
+    cout<<"------------"<<endl;
+    for(auto it=uorder_set.begin();it!=uorder_set.end();it++){
+        cout<<*it<<endl;
+    }

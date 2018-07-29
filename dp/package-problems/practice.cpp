@@ -11,41 +11,59 @@
 #include <queue>
 #include <map>
 #include <algorithm>
+#include <stack>
 
 using namespace std;
 
-int maxProfit(vector<int> &prices) {
-    if(prices.size() <2) {
-        return 0;
+
+
+vector<int> find_order(int numCourses, vector<pair<int, int>> &prerequisites) {
+    if (numCourses == 0) return vector<int>();
+    if (numCourses == 1) return vector<int>(1, 0);
+
+    vector<int> ans(numCourses);
+    vector<vector<int>> graph(numCourses);
+    vector<int> in_degree(numCourses);
+
+    for(int i=0;i<numCourses;i++){
+        graph[i] = vector<int>();
+        in_degree[i] =0;
     }
 
-    int trans = 2;
-    int len = prices.size();
+    for(pair<int,int>& cur:prerequisites){
+        graph[cur.second].push_back(cur.first);
+        in_degree[cur.first]++;
+    }
 
-    vector<vector<int>> dp(trans, vector<int>(len, 0));
-
-    for (int i = 0; i < trans; i++) {
-        int min_price = prices[0];
-        if (i == 0) {
-
-            for (int j = 1; j < len; j++) {
-                min_price = min(min_price, prices[j]);
-                dp[0][j] = max(dp[0][j - 1], prices[j] - min_price);
-            }
-
-        } else {
-            dp[i][0] = 0;
-            for (int j = 1; j < len; j++) {
-                min_price = min(min_price, prices[j - 1] - dp[i - 1][j - 1]);
-                dp[i][j] = max(dp[i][j - 1], prices[j] - min_price);
-            }
+    stack<int> my_stack;
+    for(int i=0;i<numCourses;i++){
+        if(in_degree[i]==0){
+            my_stack.push(i);
         }
     }
 
-    int result = dp[trans - 1][len - 1];
-    return result;
-}
+    int count=0;
+    while (!my_stack.empty()){
+        int pop_val = my_stack.top();
+        my_stack.pop();
+        ans[count] = pop_val;
+        count++;
 
+        int temp_len = graph[pop_val].size();
+        for(int i=0;i<temp_len;i++){
+            int cur_pos= graph[pop_val][i];
+            in_degree[cur_pos]--;
+            if(in_degree[cur_pos]==0){
+                my_stack.push(cur_pos);
+            }
+
+        }
+    }
+
+
+
+
+}
 int main() {
 
 }

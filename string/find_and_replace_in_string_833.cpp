@@ -2,8 +2,6 @@
 // Created by YuXiao on 6/10/18.
 //
 
-//
-// Created by YuXiao on 3/25/
 #include <string>
 #include <iostream>
 #include <vector>

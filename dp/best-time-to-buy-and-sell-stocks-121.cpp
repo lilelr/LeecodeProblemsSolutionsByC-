@@ -18,20 +18,43 @@ typedef int* IntArrayPtr;
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        if (prices.size() == 0){
+        if(prices.size() <2) {
             return 0;
         }
-        int min_price = prices[0];
-        int profit =0;
-        for(int i=1;i<prices.size();i++){
-            if(prices[i] > min_price){
-                profit = max(profit,prices[i] - min_price);
-            } else{
-                min_price = min(min_price,prices[i]);
+        int trans=2;
+        int len = prices.size();
+        int dp[2][len];
+        for(int i=0;i<2;i++){
+            for(int j=0;j<len;j++)
+                dp[i][j] = 0;
+        }
+        for(int i=0;i<trans;i++){
+            int min_price = prices[0];
+            if(i>=1){
+                dp[i][0] = 0;
+                for(int j=1;j<len;j++){
+//                    cout<<"round 1:"<<endl;
+
+                    min_price = min(min_price, prices[j-1]- dp[i-1][j-1]);
+                    dp[i][j] = max(dp[i][j-1],prices[j] - min_price );
+                }
+            }else{
+                for(int j=1;j<len;j++){
+                    min_price = min(min_price,prices[j]);
+                    dp[0][j] = max(dp[0][j-1],prices[j] - min_price);
+//                    cout<<"round 0:"<<endl;
+//                    cout<<dp[0][j]<<" ";
+//                    cout<<"\n";
+                }
+
             }
         }
-        return profit;
+        int result = dp[trans-1][len-1];
+        return result;
+
+
     }
+
 
     int maxProfit_122(vector<int>& prices){
         if(prices.size() <=1 ){

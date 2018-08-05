@@ -25,7 +25,7 @@ public:
 
         vector<int> res;
         // pair<first, second>: first is frequency, second is number
-        priority_queue<pair<int, int>> pq;
+        priority_queue<pair<int, int>> pq; // 最大堆
         for (auto it = mymap.begin(); it != mymap.end(); it++) {
             pq.push(make_pair(it->second, it->first));
             if (pq.size() > (int) mymap.size() - k) {

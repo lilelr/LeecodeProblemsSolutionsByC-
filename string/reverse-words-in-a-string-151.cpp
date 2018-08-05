@@ -39,4 +39,5 @@ public:
         s.resize(j);
         reverse_word(s,0,j-1);
     }
+
 };

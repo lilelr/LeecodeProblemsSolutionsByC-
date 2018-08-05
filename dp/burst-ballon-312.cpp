@@ -1,11 +1,6 @@
-//
-// Created by YuXiao on 3/25/18.
-//
 
 //
-// Created by YuXiao on 3/25/18.
-//
-// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54198/DP-O(KN)-TimeO(n)-Space-cpp-solution.
+// https://leetcode.com/problems/burst-balloons/description/
 
 #include <string>
 #include <iostream>

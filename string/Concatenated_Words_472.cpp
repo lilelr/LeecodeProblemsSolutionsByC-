@@ -27,6 +27,15 @@ private:
 
     };
 
+    struct MyTrieNode{
+        vector<MyTrieNode*> sons;
+        bool is_endl;
+        MyTrieNode(){
+            sons = vector<MyTrieNode *>(26,nullptr);
+        }
+    };
+
+
     void add_word(string &str, TrieNode *root) {
         TrieNode *cur = root;
         for (char &c:str) {

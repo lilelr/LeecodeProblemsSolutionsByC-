@@ -19,7 +19,7 @@ public:
         int ans = 0;
         for (int i = 0; i < len; i++) {
             if (s[i] == '(') {
-                mystack.push(i);
+                mystack.push(i); // stack 中记录的是下标
             } else {
                 if (mystack.empty()) {
                     mystack.push(i);

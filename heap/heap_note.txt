@@ -155,3 +155,45 @@ PriorityQueue<Integer> max = new PriorityQueue<Integer>(10, Collections.reverseO
                auto idx_pair = min_heap.top();
                min_heap.pop();
                result.push_back(make_pair(idx_pair.first, nums2[idx_pair.second]));
+
+ 今日头条笔试
+
+ PM 产品经理
+ struct task {
+     int pm_index;
+     int raise_time;
+     int priority;
+     int period;
+     int task_index;
+     int pm_task_index;
+     int end_time;
+
+ //    bool operator < (const task& b) const{
+ //        return raise_time <= b.raise_time;
+ //    }
+ };
+
+ struct compare_task {
+
+     bool operator()(const task &a, const task &b) {
+     }
+         return a.raise_time > b.raise_time; // 按提出时间早的优先排列 比较时采用逆反思维
+     }
+ };
+
+ struct compare_task_inner {
+
+     bool operator()(const task &a, const task &b) {
+         if (a.priority != b.priority) {
+             return a.priority < b.priority; // 按优先级高的排列
+         } else {
+             if (a.period != b.period) {
+                 return a.period > b.period; // 按时长短的排列
+             } else {
+                 return a.raise_time > b.raise_time; // 按提出时间最先的排列
+             }
+         }
+     }
+ };
+
+     priority_queue<task, vector<task>, compare_task> m_pq;

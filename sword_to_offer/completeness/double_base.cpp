@@ -31,6 +31,7 @@ public:
         }
 
         int pre = ex>>1;
+        // 写出递推式 a^4 = (a^2) * (a^2)
         double res = unsigned_int_power(base,pre);
         res = res*res;
         if(ex & 0x1 ==1){
@@ -38,6 +39,7 @@ public:
         }
         return res;
     }
+
     double Power(double base, int exponent) {
         if(equal(base,0) && exponent <0){
             return 0.0;

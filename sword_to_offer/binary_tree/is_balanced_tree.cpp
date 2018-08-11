@@ -27,8 +27,10 @@ public:
             return true;
         }
         int left, right;
+        // 后序遍历，先遍历左子树，再遍历右子树
         if (is_balanced(root->left, &left) && is_balanced(root->right, &right)) {
             int diff = left - right;
+            // 最后是根节点
             if (abs(diff) <= 1) {
                 *depth = 1 + (left > right ? left : right);
                 return true;
@@ -37,7 +39,6 @@ public:
 
         return false;
     }
-
     bool IsBalanced_Solution(TreeNode *pRoot) {
         int depth = 0;
         bool res = is_balanced(pRoot, &depth);

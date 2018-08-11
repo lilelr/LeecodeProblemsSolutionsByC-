@@ -33,6 +33,7 @@ public:
         auto newInterval = Interval(val, val);
         // [2,2] lowerbound 为[., 1] upperbound为[3,.]
         auto cmp = [](Interval a, Interval b) { return a.end + 1 < b.start; };
+        // lower_bound 和 upper_bound 的经典使用
         auto it0 = lower_bound(intervals.begin(), intervals.end(), newInterval, cmp);
         auto it1 = upper_bound(intervals.begin(), intervals.end(), newInterval, cmp);
 

@@ -25,6 +25,7 @@ struct TreeNode {
 
 class Solution {
 public:
+    // 先序遍历
     bool does_tree1_have_tree2(TreeNode *proot1, TreeNode *proot2) {
         if ( proot2 == NULL) {
             return true;

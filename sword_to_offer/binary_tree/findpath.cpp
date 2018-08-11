@@ -28,7 +28,7 @@ public:
 
     void find_path(TreeNode *cur, int &expected_sum, int cur_sum, vector<int> &path, vector<vector<int>> &ans) {
         cur_sum += cur->val;
-        path.push_back(cur->val);
+        path.push_back(cur->val); // 添加当前节点的值
 
         bool is_leaf = false;
         if (cur->left == nullptr && cur->right == nullptr) {
@@ -38,19 +38,22 @@ public:
             ans.push_back(path);
         }
 
+        // 先序遍历
         if (cur->left != nullptr) {
+            // 访问左子树
             find_path(cur->left, expected_sum, cur_sum, path, ans);
         }
+        // 访问右子树
         if (cur->right != nullptr) {
             find_path(cur->right, expected_sum, cur_sum, path, ans);
         }
 
-        path.pop_back();
+        path.pop_back(); // 回溯
 
     }
 
     vector<vector<int> > FindPath(TreeNode *root, int expectNumber) {
-        vector<vector<int>> ans;
+        vector<vector<int>> ans; // 记录结果
         if (root == nullptr) return ans;
         vector<int> path;
         find_path(root, expectNumber, 0, path, ans);

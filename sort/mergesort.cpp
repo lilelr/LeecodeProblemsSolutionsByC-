@@ -8,7 +8,14 @@
 using namespace std;
 const int MOD = 1000000007;
 
-
+/**
+ *
+ * @param a   原始数组
+ * @param low 要排序的起点下标
+ * @param mid
+ * @param high
+ * @param b 复制的数组
+ */
 void merge(vector<int> &a, int low, int mid, int high, vector<int> &b) {
     for (int i = low; i <= high; i++) {
         b[i] = a[i];

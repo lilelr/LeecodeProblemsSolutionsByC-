@@ -424,3 +424,16 @@ g_set.find(head->val) != g_set.end()
  然后再加7
  表示浮点数
  1000000007
+
+ float low = 1e-9;
+ float high = 1e9;
+
+
+39
+runtime  error （运行时错误）就是程序运行到一半，程序就崩溃了。
+比如说：
+①除以零
+②数组越界：int a[3]; a[10000000]=10;
+③指针越界：int * p; p=(int *)malloc(5 * sizeof(int)); *(p+1000000)=10;
+④使用已经释放的空间：int * p; p=(int *)malloc(5 * sizeof(int));free(p); *p=10;
+⑤数组开得太大，超出了栈的范围，造成栈溢出：int a[100000000];

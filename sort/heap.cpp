@@ -26,6 +26,10 @@ void rebuild_heap(vector<int> &min_heap, int i) {
     }
 }
 
+/**
+ * 初始化最小堆
+ * @param min_heap
+ */
 void initialize_min_heap(vector<int> &min_heap) {
     int len = min_heap.size();
     if (len <= 1) return;

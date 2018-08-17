@@ -24,7 +24,11 @@ public:
         string res = remain + s;
         return res;
     }
-
+//// KMP table:
+//
+//    c a t a c b # b c a t a c
+//
+//    0 0 0 0 1 0 0 0 1 2 3 4 5
 private:
     vector<int> get_KMP_table(string temp_str) {
         vector<int> table(temp_str.length());

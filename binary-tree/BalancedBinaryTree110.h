@@ -22,13 +22,19 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) { }
 };
 
+/**
+ * 深度优先遍历
+ * @param node 根节点
+ * @param flag 是否是平衡二叉树
+ * @return 二叉树的高度
+ */
 int getHeightDepth(TreeNode *node, bool &flag) {
-    if (node == nullptr) {
+    if (node == nullptr) { // 空节点
         return 0;
-    } else if (node->left == nullptr && node->right == nullptr) {
+    } else if (node->left == nullptr && node->right == nullptr) { // 叶子节点
         return 1;
     } else {
-        int leftDepth = getHeightDepth(node->left, flag);
+        int leftDepth = getHeightDepth(node->left, flag); // 左子树高度
         int rightDepth = getHeightDepth(node->right, flag);
         if (abs(leftDepth - rightDepth) >= 2) flag = false;
         return max(leftDepth, rightDepth) + 1;

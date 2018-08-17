@@ -7,9 +7,16 @@
 
 using namespace std;
 
+/**
+ *
+ * @param nums  待分区的数组
+ * @param begin 起点
+ * @param end  终点
+ * @return 分区的数的下标
+ */
 int partition(vector<int> &nums, int begin, int end) {
     if (begin < end) {
-        int pivot = nums[begin];
+        int pivot = nums[begin];// 哨兵
         int i = begin, j = end;
         while (i < j) {
             while (i < j && nums[j] >= pivot) {

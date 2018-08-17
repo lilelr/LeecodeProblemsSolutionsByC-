@@ -110,13 +110,25 @@ class RedBlackTreeSolution {
 
     size_t rank(long long key) const { return rank(root, key); }
 
+    /**
+     * 插入一个 键值为key 的节点
+     * @param x 根节点
+     * @param key
+     * @return 插入后的节点
+     */
     Node *insert(Node *x, long long key) {
-        if (!x) return new Node(key);
-        if (key < x->key) x->left = insert(x->left, key);
-        else if (key > x->key) x->right = insert(x->right, key);
-        ++x->N;
-        if (is_red(x->right) && !is_red(x->left)) x = rotate_left(x);
+        if (!x) return new Node(key);// 到达叶子节点，插入，标志颜色为红色
+        if (key < x->key) x->left = insert(x->left, key); // 小于根节点， 左边插入
+        else if (key > x->key) x->right = insert(x->right, key); // 大于根节点，右边
+        ++x->N; // 当前节点的子节点总数+1
+        // x 代表父亲节点
+        // ﻿新插入结点为父亲结点的右子结点， 执行单左旋转后,再执行单右旋转
+        if (is_red(x->right) && !is_red(x->left)) x = rotate_left(x); //
+
+        // x 代表祖父节点
+        // ﻿﻿1 父亲结点为红色同时叔父结点为黑色或者从缺 2 新插入结点为父亲结点的左子结点,执行一次单右旋转
         if (is_red(x->left) && is_red(x->left->left)) x = rotate_right(x);
+        // ﻿﻿1 父亲结点为红色同时叔父结点也为红色 , 交换颜色：父亲节点和叔父节点变为黑色， 祖父节点变为红色
         if (is_red(x->left) && is_red(x->right)) flip_color(x);
         return x;
     }
@@ -127,6 +139,8 @@ class RedBlackTreeSolution {
         return rank(x->left, key) + size(x) - size(x->left);
     }
 
+    // x 代表父亲节点
+    // ﻿新插入结点为父亲结点的右子结点， 执行单左旋转后,再执行单右旋转
     Node *rotate_left(Node *x) {
         auto y = x->right;
         size_t x_lt = size(x) - size(x->right);
@@ -139,18 +153,22 @@ class RedBlackTreeSolution {
         return y;
     }
 
+    // // x 代表祖父节点
+    // ﻿﻿1 父亲结点为红色同时叔父结点为黑色或者从缺 2 新插入结点为父亲结点的左子结点,执行一次单右旋转
     Node *rotate_right(Node *x) {
         auto y = x->left;
         size_t x_rt = size(x) - size(x->left);
         x->N = x->N - size(y) + size(y->right);
         y->N += x_rt;
-        y->color = x->color;
+        y->color = x->color; // 160-161 颜色交换
         x->color = RED;
-        x->left = y->right;
+        x->left = y->right; // 子树交换
         y->right = x;
         return y;
     }
 
+    // ﻿﻿1 父亲结点为红色同时叔父结点也为红色 , 交换颜色：父亲节点和叔父节点变为黑色， 祖父节点变为红色
+    // 交换颜色
     void flip_color(Node *x) {
         x->color = RED;
         x->left->color = x->right->color = BLACK;

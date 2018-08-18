@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
 public:
+    // 爬楼梯
     int jumpFloorII(int number) {
         if(number <=0) return 0;
         if(number ==1) return 1;

@@ -22,6 +22,7 @@ public:
         int ma = dp[0];
         for (int i = 1; i < len; i++) {
             if (dp[i - 1] <= 0) {
+                // 小于0 不能再加了， 负数越加越小
                 dp[i] = array[i];
             } else {
                 dp[i] = array[i] + dp[i - 1];

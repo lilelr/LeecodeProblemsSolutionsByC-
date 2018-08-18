@@ -25,7 +25,14 @@ struct TreeNode {
 
 class Solution {
 public:
-
+    /**
+     * 二叉树找一条路径，使得路径上节点的和等于给定的expected_sum
+     * @param cur 当前节点
+     * @param expected_sum
+     * @param cur_sum  当前累加的和， 不能用引用
+     * @param path 当前路径，引用。 因为加了引用，所以注意遍历完当前节点后要回溯
+     * @param ans
+     */
     void find_path(TreeNode *cur, int &expected_sum, int cur_sum, vector<int> &path, vector<vector<int>> &ans) {
         cur_sum += cur->val;
         path.push_back(cur->val); // 添加当前节点的值
@@ -35,7 +42,7 @@ public:
             is_leaf = true;
         }
         if (cur_sum == expected_sum && is_leaf) {
-            ans.push_back(path);
+            ans.push_back(path); // 找到和为 expected_sum 并且 当前节点为叶子节点 满足要求，添加到结果集中
         }
 
         // 先序遍历

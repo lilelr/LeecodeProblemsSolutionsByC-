@@ -55,14 +55,16 @@ public:
         }
 
         unordered_set<char> us;
+        // str index 到末尾排序
         sort(str.begin() + index, str.end());
 
         for (int i = index; i < n; i++) {
             if (us.find(str[i]) == us.end()) {
                 us.insert(str[i]);
+                // 交换 当前index 值与后面的 str[i] 值逐一交换
                 swap(str[index], str[i]);
                 fun(res, str, index + 1, n);
-                swap(str[index], str[i]);
+                swap(str[index], str[i]);    // 回溯
             }
         }
     }
@@ -96,7 +98,7 @@ int main() {
     Solution s;
     string test_a = "abc";
     string test_b = "aa";
-    vector<string> res = s.Permutation(test_b);
+    vector<string> res = s.Permutation(test_a);
     for (string item:res) {
         cout << item << endl;
     }

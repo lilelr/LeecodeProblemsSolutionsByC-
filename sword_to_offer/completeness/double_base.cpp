@@ -22,6 +22,13 @@ public:
         }
         return false;
     }
+
+    /**
+     *
+     * @param base double
+     * @param ex >=0
+     * @return
+     */
     double unsigned_int_power(double base, int ex){
         if(ex==0){
             return 1;
@@ -30,23 +37,28 @@ public:
             return base;
         }
 
-        int pre = ex>>1;
+        int pre = ex>>1; // 除以2, 6/2 = 3
         // 写出递推式 a^4 = (a^2) * (a^2)
         double res = unsigned_int_power(base,pre);
         res = res*res;
-        if(ex & 0x1 ==1){
+        if(ex & 0x1 ==1){ //ex 为奇数，还得乘多一个底数
             res *= base;
         }
         return res;
     }
-
+    /**
+     * 求以base 为底数，exponent 为指数的结果
+     * @param base
+     * @param exponent
+     * @return
+     */
     double Power(double base, int exponent) {
         if(equal(base,0) && exponent <0){
             return 0.0;
         }
 
         unsigned int abs_exponent;
-        if(exponent <0){
+        if(exponent <0){ // 指数小于0，先转为正，，最后转成分子式
             abs_exponent = (-exponent);
         }else{
             abs_exponent = exponent;

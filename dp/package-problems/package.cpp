@@ -64,6 +64,7 @@ void complete_package() {
 
 }
 
+// 多重背包问题
 void multiple_package() {
     int total_weight = 10;
     while (cin >> total_weight) {

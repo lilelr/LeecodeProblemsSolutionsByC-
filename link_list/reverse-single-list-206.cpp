@@ -15,11 +15,13 @@ public:
     };
 
     ListNode* reverseList(ListNode* head) {
+        // 判断只有一个节点或无节点的特殊情况
         if(head == nullptr || head->next == nullptr) return head;
         ListNode* pre, *p;
         pre = head;
         p = pre->next;
         pre->next = nullptr;
+        // 以p 为核心遍历
         while (p!= nullptr){
             ListNode* s = p->next;
             p->next = pre;

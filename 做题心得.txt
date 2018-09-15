@@ -87,6 +87,9 @@ bool Find(int target, vector<vector<int> > array) {
  void ConvertNode(TreeNode* p_node, TreeNode** p_last_node_in_list){
 
 12 map，set 变量 tmap, tset
+   函数名：traverse
+        Map<String, Integer> index = new HashMap();
+
 
 13          vector<int> ans(k);
          // 记得copy函数先定义目标容器的数量大小
@@ -416,7 +419,7 @@ struct compare{
     }
 };
 
-
+set 默认从小到大排序
 int main() {
     set<pair<int,int>>::iterator it;
     set<pair<int,int>,compare> my_set;

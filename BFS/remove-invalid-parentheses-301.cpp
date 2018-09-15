@@ -16,6 +16,7 @@ using namespace std;
 
 class Solution {
 public:
+    // 判断括号字符串是否成双成对
     bool is_valid(string s) {
         int count = 0;
         for (char item:s) {
@@ -32,8 +33,8 @@ public:
     vector<string> removeInvalidParentheses(string s) {
         vector<string> res;
         if (s.length() == 0) return vector<string>(1,"");
-        set<string> visited;
-        queue<string> queue;
+        set<string> visited; // 保存已经遍历过的字符串
+        queue<string> queue; // 存放只包含括号的字符串
         queue.push(s);
         visited.insert(s);
 
@@ -52,7 +53,7 @@ public:
 
             for (int i = 0; i < s.length(); i++) {
                 if (s[i] != '(' && s[i] != ')') continue;
-
+                // 忽略当前括号，提取字符串
                 string t = s.substr(0, i) + s.substr(i + 1);
 
                 if (visited.find(t) == visited.end()) {

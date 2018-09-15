@@ -1,5 +1,13 @@
-#include <bits/stdc++.h>
-//https://leetcode.com/problems/sentence-similarity-ii/description/
+#include <string>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <queue>
+#include <map>
+#include <algorithm>
+#include <unordered_map>
+#include <cstring>
+#include <list>//https://leetcode.com/problems/sentence-similarity-ii/description/
 using namespace std;
 #define M(a, b) memset(a,b,sizeof(a))
 

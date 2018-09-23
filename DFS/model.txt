@@ -6,8 +6,10 @@
 #include <queue>
 #include <map>
 #include <algorithm>
+
 using namespace std;
 
+const int maxn = 0x3f3f3f3f;
 class Solution {
 public:
 

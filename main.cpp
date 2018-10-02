@@ -1,4 +1,3 @@
-// https://www.cnblogs.com/skywang12345/p/3602162.html
 #include <string>
 #include <iostream>
 #include <vector>
@@ -10,69 +9,43 @@
 #include <cstring>
 #include <list>
 
-
+//https://leetcode.com/problems/single-element-in-a-sorted-array/discuss/100733/Java-Binary-Search-with-Detailed-Explanation
 using namespace std;
-class LFUCache{
-private:
-    int cap;
-    int size;
-    int min_freq;  // minFreq is the smallest frequency so far
-
-    unordered_map<int, pair<int,int>> my_map; // {key to {value, frequency} }
-    unordered_map<int, list<int>::iterator> map_iter; // {key, list iterator of fm }
-    unordered_map<int, list<int> > fm;
 
 
+class Solution {
 public:
-    LFUCache(int capacity){
-        cap = capacity;
-        size = 0;
-    }
+    // O(n)
+//    int singleNonDuplicate(vector<int>& nums) {
+//        int ans =0;
+//        for(auto& item:nums){
+//            ans ^= item;
+//        }
+//        return ans;
+//    }
 
-    int get(int key){
-        if(my_map.count(key) == 0) return -1;
-
-        fm[my_map[key].second].erase(map_iter[key]);
-        my_map[key].second++;
-        fm[my_map[key].second].push_back(key);
-        map_iter[key] = --fm[my_map[key].second].end();
-
-        if(fm[min_freq].size() == 0){
-            min_freq++;
-        }
-
-        return my_map[key].first;
-    }
-
-    void put(int key, int value){
-        if(cap <= 0 ) return;
-
-        int store_value = get(key);
-        if(store_value != -1){
-            my_map[key].first = value;
-            return;
-        }
-
-        if(size >= cap){
-            my_map.erase(fm[min_freq].front());
-            map_iter.erase(fm[min_freq].front());
-            fm[min_freq].pop_front();
-            size--;
-        }
-
-        my_map[key] = {value,1};
-        fm[1].push_back(key);
-        map_iter[key]  = --fm[1].end();
-        min_freq = 1;
-        size++;
-
-    }
+  // O(logn)
+  int singleNonDuplicate(vector<int>& nums) {
+      int n = nums.size(), left = 0, right = n - 1;
+      while (left < right) {
+          int mid = left + ((right - left) >>1);
+          if (mid % 2 == 0) {
+              if (nums[mid] == nums[mid-1]) right = mid - 2;
+              else if (nums[mid] == nums[mid+1]) left = mid + 2;
+              else return nums[mid];
+          }
+          else {
+              if (nums[mid] == nums[mid-1]) left = mid + 1;
+              else if (nums[mid] == nums[mid+1]) right = mid - 1;
+              else return nums[mid];
+          }
+      }
+      return nums[left];
+  }
 };
 int main() {
-//    vector<int> nums = {3,1,2,5};
-//    quick_sort(nums,0,3);
-//    for(auto& item:nums){
-//        cout<<item<<": ";
-//    }
-//    return 0;
+   Solution s;
+    vector<int> nums = {1,1,2};
+    int ans = s.singleNonDuplicate(nums);
+    cout<<ans<<endl;
 }

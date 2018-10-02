@@ -1,8 +1,4 @@
-//
-// Created by YuXiao on 5/22/18.
-//
 
-//
 // Created by YuXiao on 3/25/
 #include <string>
 #include <iostream>

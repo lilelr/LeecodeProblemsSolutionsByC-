@@ -472,7 +472,7 @@ runtime  error （运行时错误）就是程序运行到一半，程序就崩�
 
 
 40 命名
-step
+step,total
 
 41
 bfs 初始化visited 数组
@@ -480,3 +480,5 @@ bfs 初始化visited 数组
         for (string gene : bank) {
             visited[gene] = false;
         }
+
+42

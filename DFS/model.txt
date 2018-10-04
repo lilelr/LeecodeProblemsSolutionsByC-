@@ -1,20 +1,23 @@
-
 #include <string>
 #include <iostream>
 #include <vector>
 #include <cstdio>
-#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <set>
 #include <map>
+#include <cstdlib>
 #include <algorithm>
+#include <queue>
+// accumulate example
+#include <functional>   // std::minus
+#include <numeric>      // std::accumulate
 
 using namespace std;
-
-const int maxn = 0x3f3f3f3f;
 class Solution {
 public:
 
 };
-
 
 int main() {
 

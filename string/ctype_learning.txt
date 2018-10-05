@@ -1,0 +1,68 @@
+﻿转
+C语言字符检测函数：isalnum、isalpha、isascii、iscntrl、isdigit、isgraph、islower、isspace、ispunct、isupper
+2016年01月29日 16:53:44 onthewaytotop 阅读数：1092
+头文件：#include<ctype.h>
+
+(1)isalnum(c)
+
+检查参数 c 是否为英文字母或阿拉伯数字, 在标准c 中相当于使用"isalpha(c) || isdigit(c)"做测试.
+
+
+
+(2)isalpha(c)
+
+检查参数 c 是否为英文字母, 在标准c 中相当于使用"isupper(c)||islower(c)"做测试.
+
+
+
+(3)issupper(c)
+
+检查参数 c 是否为大写英文字母.返回值若参数c 为大写英文字母, 则返回TRUE, 否则返回NULL(0).
+
+
+
+(4)islower(c)
+
+检查参数 c 是否为小写英文字母.返回值若参数c 为小写英文字母, 则返回TRUE, 否则返回NULL(0).
+
+
+
+(5)isdigit(c)
+
+检查参数 c 是否为阿拉伯数字0 到9.返回值若参数c 为阿拉伯数字, 则返回TRUE, 否则返回NULL(0).
+
+
+
+(6)isascii(c)
+
+检查参数 c 是否为ASCII 码字符, 也就是判断c 的范围是否在0 到127 之间.
+
+
+
+(7)iscntrl(c)
+
+检查参数 c 是否为ASCII 控制码, 也就是判断c 的范围是否在0 到30 之间.
+
+
+
+(8)isspace(c)
+
+检查参数 c 是否为空格字符, 也就是判断是否为空格('')、定位字符('\t')、CR('\r')、换行('\n')、
+垂直定位字符('\v')或翻页('\f')的情况.
+返回值若参数c 为空格字符, 则返回TRUE, 否则返回NULL(0).
+
+
+
+(9)ispunct(c)
+
+检查参数 c 是否为标点符号或特殊符号. 返回TRUE 也就是代表参数c 为非空格、非数字和非英文字母.
+返回值若参数c 为标点符号或特殊符号, 则返回TRUE, 否则返回NULL(0).
+附加说明此为宏定义, 非真正函数.
+
+
+
+(10)isgraph(c)
+
+检查参数 c 是否为可打印字符, 若c 所对应的ASCII 码可打印, 且非空格字符则返回TRUE.
+返回值若参数c 为可打印字符, 则返回TRUE, 否则返回NULL(0).
+附加说明此为宏定义, 非真正函数.

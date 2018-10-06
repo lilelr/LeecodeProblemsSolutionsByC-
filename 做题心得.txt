@@ -472,7 +472,7 @@ runtime  error （运行时错误）就是程序运行到一半，程序就崩�
 
 
 40 命名
-step,total
+step,total,found
 
 41
 bfs 初始化visited 数组

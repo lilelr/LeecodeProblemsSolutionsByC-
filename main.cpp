@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <cstring>
 #include <list>
+#include <unordered_set>
 
 //https://leetcode.com/problems/single-element-in-a-sorted-array/discuss/100733/Java-Binary-Search-with-Detailed-Explanation
 using namespace std;
@@ -15,37 +16,32 @@ using namespace std;
 
 class Solution {
 public:
-    // O(n)
-//    int singleNonDuplicate(vector<int>& nums) {
-//        int ans =0;
-//        for(auto& item:nums){
-//            ans ^= item;
-//        }
-//        return ans;
-//    }
+    int numberOfArithmeticSlices(vector<int> &A) {
+        int n = A.size();
+        vector<unordered_map<int,int>> dp(n,unordered_map<int,int>());
+        // dp[i][diff] 以当前A[i] 为数组末尾元素，差为diff 的数组个数
+        unordered_set<int> mmset(A.begin(), A.end());
+        int res=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<i;j++){
+                int diff = A[i]-A[j];
 
-  // O(logn)
-  int singleNonDuplicate(vector<int>& nums) {
-      int n = nums.size(), left = 0, right = n - 1;
-      while (left < right) {
-          int mid = left + ((right - left) >>1);
-          if (mid % 2 == 0) {
-              if (nums[mid] == nums[mid-1]) right = mid - 2;
-              else if (nums[mid] == nums[mid+1]) left = mid + 2;
-              else return nums[mid];
-          }
-          else {
-              if (nums[mid] == nums[mid-1]) left = mid + 1;
-              else if (nums[mid] == nums[mid+1]) right = mid - 1;
-              else return nums[mid];
-          }
-      }
-      return nums[left];
-  }
+                int add_on = 0;
+                if(dp[j].count(diff) !=0){
+                    add_on = dp[j][diff];
+                }
+
+                if(mmset.count(A[i]+diff)!=0){
+                    add_on+=1;
+                }
+                dp[i][diff]+=add_on;
+                res+=add_on;
+            }
+        }
+    }
+
 };
+
 int main() {
-   Solution s;
-    vector<int> nums = {1,1,2};
-    int ans = s.singleNonDuplicate(nums);
-    cout<<ans<<endl;
+
 }

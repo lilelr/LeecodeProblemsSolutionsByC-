@@ -23,6 +23,10 @@ public:
         my_nums[0] = my_nums[n] = 1;
         n++;
         vector<vector<int>> dp(n, vector<int>(n));
+        // 至少4个变量，才能完成区间dp遍历
+        // k 区间大小
+        // 当前遍历的区间 left,right
+        // 当前遍历的区间指针 i
         for (int k = 2; k < n; k++) {
             for (int left = 0; left < n - k; left++) {
                 int right = left + k;
@@ -34,6 +38,8 @@ public:
                 }
             }
         }
+
+
 
 
         return dp[0][n - 1];

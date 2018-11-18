@@ -29,9 +29,9 @@ void zero_one_package() {
             item = 0;
         }
         int n = 5;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {  // 挑选第i种物品
             // 逆序遍历， 满足每种物品只有一个的条件
-            for (int j = total_weight; j >= w[i]; j--) {
+            for (int j = total_weight; j >= w[i]; j--) { // 不超过包的总体积或总体重限制下，计算现在包的总价值
                 dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
             }
         }
@@ -52,7 +52,7 @@ void complete_package() {
             item = 0;
         }
         int n = 5;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // 挑选第i种物品
             // 顺序遍历， 满足每种物品有无限个的条件
             for (int j = w[i]; j <= total_weight; j++) {
                 dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
@@ -76,9 +76,10 @@ void multiple_package() {
             item = 0;
         }
         int n = 5;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // 挑选第i种物品
             // 逆序遍历，第i种物品有numbers[i]个，可以看作第i种物品有 numbers[i] 种，再次运用0-1背包问题思想
             for (int k = 0; k < numbers[i]; k++) {
+                // 不超过包的总体积或总体重限制下，计算现在包的总价值
                 for (int j = total_weight; j >= w[i]; j--) {
                     dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
                 }

@@ -18,11 +18,13 @@ public:
     // Hashmap set
     bool canCross(vector<int> &stones) {
         int n = stones.size(), ans = 0;
-        unordered_map<int, set<int>> m;
+        unordered_map<int, set<int>> m; //
+        // key(position of current unit) value (possible steps collections for a specified unit)
         for (auto x: stones) m[x] = {};
         m[0].insert(0);
         for (int i = 0; i < n; i++) {
             for (int last_step: m[stones[i]]) {
+                // calculate the  possible length of next step
                 for (int next_step = last_step - 1; next_step <= last_step + 1; next_step++) {
                     if (next_step > 0 && m.count(stones[i] + next_step)) {
                         m[stones[i] + next_step].insert(next_step);

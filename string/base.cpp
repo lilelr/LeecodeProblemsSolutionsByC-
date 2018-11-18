@@ -11,7 +11,15 @@ using namespace std;
 
 class Solution {
 public:
-
+//    _LIBCPP_FUNC_VIS string to_string(int __val);
+//    _LIBCPP_FUNC_VIS string to_string(unsigned __val);
+//    _LIBCPP_FUNC_VIS string to_string(long __val);
+//    _LIBCPP_FUNC_VIS string to_string(unsigned long __val);
+//    _LIBCPP_FUNC_VIS string to_string(long long __val);
+//    _LIBCPP_FUNC_VIS string to_string(unsigned long long __val);
+//    _LIBCPP_FUNC_VIS string to_string(float __val);
+//    _LIBCPP_FUNC_VIS string to_string(double __val);
+//    _LIBCPP_FUNC_VIS string to_string(long double __val);
 };
 
 string convertToString(double x) {

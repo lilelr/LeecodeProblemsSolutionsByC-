@@ -39,10 +39,10 @@ public:
 
         dp[0] = 0;
         for (int i = 0; i < len; i++) { // 选择第i枚硬币
-            for (int j = coins[i]; j <= amount; j++) { // 因为硬币无限多，从j 从小遍历到大
+            for (int j = coins[i]; j <= amount; j++) { // 因为硬币无限多，顺序遍历，从j 从小遍历到大
                 int &pre = dp[j - coins[i]];
                 if (pre != INT_MAX) {
-                    dp[j] = min(dp[j], pre + 1);
+                    dp[j] = min(dp[j], pre + 1); // 计算满足amount 的最小硬币数量,所以用min
                 }
 //                dp[amount] = min(dp[j-coins[i]])
             }

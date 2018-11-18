@@ -22,7 +22,7 @@ public:
         if (matrix.empty()) return 0;
         int row = matrix.size(), col = matrix[0].size(), res = INT_MIN;
         for (int l = 0; l < col; l++) {
-            vector<int> sums(row, 0);
+            vector<int> sums(row, 0); // store the current sum arrays for each row
 
             for (int r = l; r < col; r++) {
                 for (int i = 0; i < row; i++) {
@@ -37,6 +37,7 @@ public:
                     curSum += sum;
                     set<int>::iterator it = accuSet.lower_bound(curSum - k);
                     if (it != accuSet.end()) {
+                        // 当前不超过 k 的最大子矩阵的和
                         curMax = max(curMax, curSum - *it);
                     }
                     accuSet.insert(curSum);

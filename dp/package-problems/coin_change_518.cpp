@@ -19,7 +19,7 @@ public:
         if (n == 0) return 0;
 
         vector<int> dp(amount + 1, 0);
-        dp[0] = 1;
+        dp[0] = 1; // 初始化时，dp[0] = 1
         for (int i = 0; i < n; i++) { // 第i枚银币，
             for (int j = 1; j <= amount; j++) {
                 if (j >= coins[i]) {

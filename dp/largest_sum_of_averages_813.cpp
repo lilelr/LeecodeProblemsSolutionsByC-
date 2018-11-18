@@ -30,8 +30,8 @@ public:
         double f[len][K + 1];
         double s[len + 1];
         for (int i = 1; i <= len; i++) {
-            s[i] = s[i - 1] + A[i - 1];
-            f[i - 1][1] = s[i] / i;
+            s[i] = s[i - 1] + A[i - 1]; // 计算累加和
+            f[i - 1][1] = s[i] / i;  // 前i个数只组成一个组合时， 它的平均值
         }
 
         for (int j = 2; j <= K; j++) {
@@ -39,6 +39,7 @@ public:
                 double ma = 0;
 
                 for (int p = 0; p < i; p++) {
+                    // 前p 个元素组成 j-1 个组合， 第p+1元素到s[i+1] 个元素组成第j个组合
                     double sum = f[p][j - 1] + (s[i + 1] - s[p + 1]) / (i - p);
                     if (p == 0) {
                         ma = sum;

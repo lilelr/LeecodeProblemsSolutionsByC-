@@ -28,6 +28,7 @@ struct TreeNode {
 
 class Solution {
 public:
+    // postorder
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
         if (root == NULL || root->val == p->val || root->val == q->val) {
             return root;
@@ -40,6 +41,36 @@ public:
         } else {
             return right;
         }
+    }
+
+    TreeNode *lowestCommonAncestor_dfs(TreeNode *root, TreeNode *p, TreeNode *q) {
+        unordered_map<TreeNode *, int> depth;
+        unordered_map<TreeNode *, TreeNode *> parent;
+        dfs(root, NULL, 0, depth, parent);
+        if (depth[p] < depth[q]) {
+            swap(p, q);
+        }
+        int diff = depth[p] - depth[q];
+        for (int i = 0; i < diff; i++) {
+            p = parent[p];
+        }
+
+        while (p != q) {
+            p = parent[p];
+            q = parent[q];
+        }
+        return p;
+    }
+
+    void dfs(TreeNode *node, TreeNode *p, int d, unordered_map<TreeNode *, int> &depth,
+             unordered_map<TreeNode *, TreeNode *> &parent) {
+        if (!node) {
+            return;
+        }
+        depth[node] = d;
+        parent[node] = p;
+        dfs(node->left, node, d + 1, depth, parent);
+        dfs(node->right, node, d + 1, depth, parent);
     }
 };
 

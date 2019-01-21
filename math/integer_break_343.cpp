@@ -1,3 +1,7 @@
+//
+//343. Integer Break
+////https://leetcode.com/problems/integer-break/
+//https://leetcode.com/problems/integer-break/discuss/80818/Java-O(n)-DP-solution-store-and-reuse-products
 #include <string>
 #include <iostream>
 #include <vector>
@@ -14,6 +18,7 @@
 #include <numeric>      // std::accumulate
 
 using namespace std;
+
 class Solution {
 public:
 
@@ -47,6 +52,23 @@ public:
         ans[3] = 3;
         int res = recursive(n, ans);
         return res;
+
+    }
+
+    int integerBreak_2(int n) {
+        if (n == 2) {
+            return 1;
+        }
+        if (n == 3) {
+            return 2;
+        }
+        if (n % 3 == 0) {
+            return static_cast<int>(pow(3, (n / 3)));
+        } else if (n % 3 == 1) {
+            return 4 * static_cast<int>(pow(3, (n - 4) / 3));
+        } else {
+            return 2 * static_cast<int>(pow(3, (n - 2) / 3));
+        }
 
     }
 

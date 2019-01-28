@@ -48,7 +48,36 @@ public:
         return false;
     }
 
-
+////方法二：
+//    //将矩阵看成数组,利用二分查找，运行时间12ms,时间复杂度O(log(mn))
+//    //将m*n的矩阵看成数组，即matrix[x][y]=>a[x*n+y]
+//    //数组也可以转回m*n矩阵，即a[x]=>matrix[x/n][x%n]
+//    class Solution {
+//    public:
+//        bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//            if (matrix.empty())  return false;
+//            int m = matrix.size(), n = matrix[0].size();
+//            int low = 0, high = m*n - 1;
+//
+//            while (low<=high)
+//            {
+//                int mid = low + (high - low) / 2;
+//                int value = matrix[mid / n][mid%n];
+//                if (value == target)
+//                    return true;
+//                else if (value < target)
+//                    low = mid + 1;
+//                else
+//                    high = mid - 1;
+//            }
+//            return false;
+//        }
+//    };
+//    ---------------------
+//    作者：zhihua_bupt
+//            来源：CSDN
+//            原文：https://blog.csdn.net/geekmanong/article/details/50551128
+//            版权声明：本文为博主原创文章，转载请附上博文链接！
 };
 
 int main() {

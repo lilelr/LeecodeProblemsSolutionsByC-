@@ -14,6 +14,7 @@
 #include <numeric>      // std::accumulate
 //https://leetcode.com/problems/maximum-product-of-word-lengths/
 using namespace std;
+
 class Solution {
 public:
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -46,7 +47,6 @@ public:
         }
         return false;
     }
-
 
 
 };

@@ -25,14 +25,16 @@ public:
         const int n = matrix.size();
         int low = matrix[0][0], high = matrix[n - 1][n - 1];
         while (low <= high) {
-            int count = 0;
-            int mid = low + (high - low) / 2;
-            for (int row = 0; row < n; row++)
-                count += upper_bound(matrix[row].begin(), matrix[row].end(), mid) - matrix[row].begin();
-            if (count < k)
+            int mid = low + ((high - low) >> 1);
+            int cnt = 0;
+            for (int i = 0; i < n; i++) {
+                cnt += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+            }
+            if (cnt < k) {
                 low = mid + 1;
-            else
+            } else {
                 high = mid - 1;
+            }
         }
         return low;
     }
